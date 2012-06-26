@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, MobileCircleActivity!</string>
+    <string name="app_name">Mobile Circle</string>
+    <!-- <string name="mobile_number">Mobile Number</string> -->
+    <string name="mobile_number_hint">Enter Mobile Number</string>
+	<string name="button_ok">Submit</string>
+	<string name="MCDatabase_onCreate">"
+	    CREATE TABLE IF NOT EXISTS circle_operator (_id INTEGER PRIMARY KEY AUTOINCREMENT, number INTEGER, operator TEXT, circle TEXT)
+	    CREATE TABLE IF NOT EXISTS circles (_id INTEGER PRIMARY KEY AUTOINCREMENT, code TEXT, desc TEXT)
+	    CREATE TABLE IF NOT EXISTS operators (_id INTEGER PRIMARY KEY AUTOINCREMENT, code TEXT, name TEXT, company TEXT)
+	"</string>
+	<string name="MCDatabase_onCreateData">"
+	    INSERT INTO circles (id, code, desc) VALUES
+			(1, 'AP', 'Andhra Pradesh Telecom Circle.'),
+			(2, 'AS', 'Assam Telecom Circle.'),
+			(3, 'BR', 'Bihar &amp; Jharkhand Telecom Circle.'),
+			(4, 'CH', 'Chennai Metro Telecom Circle (includes Chennai, MEPZ &amp; Mahabalipuram).'),
+			(5, 'DL', 'Delhi Metro Telecom Circle (includes NCR, Faridabad, Ghaziabad, Gurgaon &amp; Noida).'),
+			(6, 'GJ', 'Gujarat Telecom Circle (includes Daman &amp; Diu, Dadra &amp; Nagar Haveli).'),
+			(7, 'HP', 'Himachal Pradesh Telecom Circle.'),
+			(8, 'HR', 'Haryana Telecom Circle (excludes Faridabad, Gurgaon &amp; Panchkula).'),
+			(9, 'JK', 'Jammu &amp; Kashmir Telecom Circle.'),
+			(10, 'KL', 'Kerala Telecom Circle (includes Lakshadeep).'),
+			(11, 'KA', 'Karnataka Telecom Circle.'),
+			(12, 'KO', 'Kolkata Metro Telecom Circle (includes parts of Haora, Hooghly, North &amp; South 24 Parganas and Nadia Districts).'),
+			(13, 'MH', 'Maharashtra Telecom Circle (includes Goa but excludes Mumbai, Navi Mumbai &amp; Kalyan).'),
+			(14, 'MP', 'Madhya Pradesh &amp; Chhattisgarh Telecom Circle.'),
+			(15, 'MU', 'Mumbai Metro Telecom Circle (includes Navi Mumbai &amp; Kalyan)'),
+			(16, 'NE', 'North East India Telecom Circle (includes Arunachal Pradesh, Meghalaya, Mizoram, Nagaland, Manipur and Tripura).'),
+			(17, 'OR', 'Orissa Telecom Circle.'),
+			(18, 'PB', 'Punjab Telecom Circle (includes Chandigarh &amp; Panchkula).'),
+			(19, 'RJ', 'Rajasthan Telecom Circle.'),
+			(20, 'TN', 'Tamil Nadu Telecom Circle (excludes CH Chennai, MEPZ, Mahabalipuram &amp; Minjur and includes Pondicherry except Yanam &amp; Mahe).'),
+			(21, 'UE', 'Uttar Pradesh (East) Telecom Circle.'),
+			(22, 'UW', 'Uttar Pradesh (West) &amp; Uttarakhand Telecom Circle (excludes Ghaziabad &amp; Noida).'),
+			(23, 'WB', 'West Bengal Telecom Circle (includes Andaman &amp; Nicobar,Sikkim excludes Calcutta Telecom District).'),
+			(24, 'ZZ', 'Customer Care (All Over India).')
+	"</string>
+	<string name="MCDatabase_onUpdate">"
+	    DROP TABLE IF NOT EXISTS circle_operator
+	    DROP TABLE IF NOT EXISTS circles
+	    DROP TABLE IF NOT EXISTS operators
+	"</string>
+</resources>
