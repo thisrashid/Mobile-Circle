@@ -31,6 +31,7 @@ public class MobileCircleActivity extends Activity {
 				Vector<String> loc = db.getLocation(number.getText().toString().substring(0, 4));
 				
 				location.setText(number.getText().toString().substring(0, 4) + " - " + loc.toString());
+				//location.setText(number.getText().toString().substring(0, 4) + " - " + db.getFromDb());
 			}
 		};
 		((Button) findViewById(R.id.button_ok)).setOnClickListener(listener);

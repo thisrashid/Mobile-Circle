@@ -17,20 +17,21 @@ import com.ecafechat.mobilecircle.R;
 public class MobileCircleDatabase extends SQLiteOpenHelper {
 	
 	/** The name of the database file on the file system */
-	
-    private static final String DATABASE_NAME = "mobile_circle.db";
-    private static final String DATABASE_PATH = "/data/data/com.ecafechat.mobilecircle.model/databases/";
-    /** The version of the database that this class understands. */
-    private static final int DATABASE_VERSION = 1;
     /** Keep track of context so that we can load SQL from string resources */
     private final Context mContext;
+	
+    private static final String DATABASE_NAME = "mobile_circle.db";
+    private static String DATABASE_PATH = "";
+    /** The version of the database that this class understands. */
+    private static final int DATABASE_VERSION = 1;
     
     private SQLiteDatabase sqlDatabase;
     
 	public MobileCircleDatabase(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.mContext = context;
-        System.out.println("----DB constructor");
+        DATABASE_PATH = "/data/data/" + context.getPackageName() + "/databases/";
+        
         //this.sqlDatabase = this.getWritableDatabase();
         //this.open();
         boolean dbexist = checkdatabase();
@@ -155,7 +156,7 @@ public class MobileCircleDatabase extends SQLiteOpenHelper {
     	try {
     		String sql = "SELECT c.desc as location, o.name as operator, o.company " +
     				"FROM circles c, operators o, circle_operator co " +
-    				"WHERE `co`.`number = ? AND co.operator=o.code AND co.circle=c.code";
+    				"WHERE co.number = ? AND co.operator=o.code AND co.circle=c.code";
     		
 			cursor = sqlDatabase.rawQuery(sql, new String[] {number});
 			if(cursor != null && cursor.getCount() > 0 && cursor.moveToFirst()) {
@@ -165,6 +166,27 @@ public class MobileCircleDatabase extends SQLiteOpenHelper {
 			}
 		} catch (Exception e) {
 			Log.e(DATABASE_NAME, "An error occured while getting location for " + number + " : " + e.toString());
+			e.printStackTrace();
+		} finally {
+			if(cursor != null && !cursor.isClosed()) {
+				cursor.close();
+			}
+		}
+    	return result;
+    }
+    
+    public String getFromDb() {
+    	String result = "";
+    	Cursor cursor = null;
+    	try {
+    		String sql = "SELECT count(*) FROM circles";
+    		
+			cursor = sqlDatabase.rawQuery(sql, new String[] {});
+			if(cursor != null && cursor.getCount() > 0 && cursor.moveToFirst()) {
+				result = "" + cursor.getString(0);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			if(cursor != null && !cursor.isClosed()) {
 				cursor.close();
