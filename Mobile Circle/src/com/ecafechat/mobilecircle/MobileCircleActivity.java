@@ -29,9 +29,20 @@ public class MobileCircleActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				Vector<String> loc = db.getLocation(number.getText().toString().substring(0, 4));
+				System.out.println("Output = " + loc);
+				String output = "Number:" + number.getText().toString() + "\n";
 				
-				location.setText(number.getText().toString().substring(0, 4) + " - " + loc.toString());
-				//location.setText(number.getText().toString().substring(0, 4) + " - " + db.getFromDb());
+				if(loc != null && loc.size() == 3) {
+					output += "Circle: " + loc.get(0) + "\n";
+					output += "Operator: " + loc.get(1) + "\n";
+					output += "Company: " + loc.get(2) + "\n";
+				} else {
+					output += "No result found";
+				}
+				
+				//location.setText(number.getText().toString().substring(0, 4) + " - " + loc.toString());
+				location.setText(output);
+				
 			}
 		};
 		((Button) findViewById(R.id.button_ok)).setOnClickListener(listener);
