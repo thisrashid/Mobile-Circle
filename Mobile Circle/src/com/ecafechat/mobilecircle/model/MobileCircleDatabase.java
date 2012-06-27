@@ -158,7 +158,7 @@ public class MobileCircleDatabase extends SQLiteOpenHelper {
     				"FROM circles c, operators o, circle_operator co " +
     				"WHERE co.number = ? AND co.operator=o.code AND co.circle=c.code";
     		
-			cursor = sqlDatabase.rawQuery(sql, new String[] {number});
+			cursor = sqlDatabase.rawQuery(sql, new String[] {'"' + number + '"'});
 			if(cursor != null && cursor.getCount() > 0 && cursor.moveToFirst()) {
 				result.add(cursor.getString(cursor.getColumnIndex("location")));
 				result.add(cursor.getString(cursor.getColumnIndex("operator")));
